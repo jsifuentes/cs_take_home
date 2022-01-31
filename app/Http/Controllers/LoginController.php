@@ -18,7 +18,7 @@ class LoginController
 
         if (Auth::attempt($fields)) {
             $request->session()->regenerate();
-            return redirect()->intended('home');
+            return redirect()->intended('products');
         }
 
         return back()->withErrors([
