@@ -15,4 +15,6 @@ php artisan key:generate
 ./fresh.sh
 
 npm run prod
+
+php artisan serve --host 0.0.0.0
 ```
