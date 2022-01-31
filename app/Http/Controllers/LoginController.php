@@ -21,8 +21,9 @@ class LoginController
             return redirect()->intended('products');
         }
 
-        return back()->withErrors([
-            'email' => 'Incorrect email and/or password.'
-        ]);
+        return back()->withInput()
+            ->withErrors([
+                'email' => 'Incorrect email and/or password.'
+            ]);
     }
 }
