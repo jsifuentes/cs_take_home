@@ -1,5 +1,3 @@
-# CommentSold Interview
-
 Initial setup:
 
 ```
