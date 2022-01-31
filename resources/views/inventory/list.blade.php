@@ -5,6 +5,10 @@
 
     <form method="GET" class="filters mb-2">
         SKU: <input type="text" name="sku" value="{{ $skuFilter }}" class="p-1" />
+        Inventory: <select name="inventory_operand" class="p-1 pr-8">
+            <option value=">">greater than</option>
+            <option value="<">less than</option>
+        </select>
         <input type="submit" value="Search" class="border-2 p-1">
 
         @if(strlen($productFilter) > 0 || strlen($skuFilter) > 0)

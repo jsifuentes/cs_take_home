@@ -3,6 +3,7 @@
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductsController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +27,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/products', [ProductsController::class, 'list'])->name('products');
     Route::get('/inventory', [InventoryController::class, 'list'])->name('inventory');
+
+    Route::get('/logout', function (Request $request) {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect(route('login'));
+    })->name('logout');
 });
