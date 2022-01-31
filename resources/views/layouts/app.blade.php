@@ -8,6 +8,7 @@
 <body>
     <div class="container mt-4 w-50% p-3 mx-auto border-2 rounded border-dotted border-indigo-500">
         <header class="flex">
+            @auth
             <nav class="grow">
                 <a href="{{ route('products') }}" class="underline">Products</a> |
                 <a href="{{ route('inventory') }}" class="underline">Inventory</a>
@@ -17,6 +18,7 @@
                 Hello, {{ auth()->user()->name }} -
                 <a href="{{ route('logout') }}" class="underline">Logout</a>
             </div>
+            @endauth
         </header>
         @yield('content')
     </div>

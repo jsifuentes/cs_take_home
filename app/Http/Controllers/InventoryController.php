@@ -8,24 +8,24 @@ class InventoryController
 {
     public function list(Request $request)
     {
-        $product = $request->query('product');
-        $sku = $request->query('sku');
+        $allowedOperands = [
+            '>=',
+            '<=',
+        ];
 
-        $inventory = $request->user()->inventory()
-            ->with('product');
+        $filters = [
+            'product' => $request->query('product'),
+            'sku' => $request->query('sku'),
+            'inventory_operand' => $request->query('inventory_operand'),
+            'inventory_value' => $request->query('inventory_value'),
+        ];
 
-        if (strlen($product) > 0) {
-            $inventory->where('product_id', $product);
-        }
-
-        if (strlen($sku) > 0) {
-            $inventory->where('sku', 'like', '%' . $sku . '%');
+        if ($filters['inventory_operand'] && !in_array($filters['inventory_operand'], $allowedOperands)) {
+            $filters['inventory_operand'] = $allowedOperands[0];
         }
 
         return view('inventory.list', [
-            'skuFilter' => $sku,
-            'productFilter' => $product,
-            'inventory' => $inventory->paginate(10),
+            'filters' => $filters,
         ]);
     }
 }
