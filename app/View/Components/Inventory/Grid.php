@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Inventory;
 
+use App\Models\Inventory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\Component;
@@ -37,6 +38,15 @@ class Grid extends Component
         }
 
         return $inventory;
+    }
+
+    public function getUrl(Inventory $row): string
+    {
+        if (isset($this->filters['product'])) {
+            return route('products', ['id' => $row->product_id]);
+        }
+
+        return route('inventory', ['product' => $row->product_id]);
     }
 
     public function render()

@@ -1,4 +1,4 @@
-@props(['inventory'])
+@props(['inventory', 'filters' => []])
 
 <table class="table-auto w-full text-left">
     <thead>
@@ -16,7 +16,7 @@
     <tbody>
         @foreach ($inventory as $row)
         <tr>
-            <td><a href="{{ route('inventory', ['product' => $row->product_id]) }}" class="underline">{{ $row->product->name }}</a></td>
+            <td><a href="{{ $getUrl($row) }}" class="underline">{{ $row->product->name }}</a></td>
             <td>{{ $row->sku }}</td>
             <td>{{ $row->quantity }}</td>
             <td>{{ $row->color }}</td>

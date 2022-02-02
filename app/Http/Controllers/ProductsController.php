@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 
 class ProductsController
 {
-    public function list()
+    public function list(Request $request)
     {
-        return view('products.list');
+        $filters = [
+            'id' => $request->query('id'),
+        ];
+
+        return view('products.list', [
+            'filters' => $filters,
+        ]);
     }
 }
